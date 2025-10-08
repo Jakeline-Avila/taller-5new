@@ -1,22 +1,43 @@
 using UnityEngine;
 
-public class BarequeroAudioTrigger : MonoBehaviour
+public class BarequeroAudio : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioBarequero;
+    public GameObject textoBarequero;
+
+    private bool sonidoReproducido = false;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // Asegura que el texto esté oculto al iniciar
+        if (textoBarequero != null)
+            textoBarequero.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Barca"))
         {
-            if (!audioSource.isPlaying)
+            // Reproduce el sonido solo una vez
+            if (!sonidoReproducido)
             {
-                audioSource.Play();
+                audioBarequero.Play();
+                sonidoReproducido = true;
             }
+
+            // Muestra el texto
+            if (textoBarequero != null)
+                textoBarequero.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Barca"))
+        {
+            // Oculta el texto al alejarse
+            if (textoBarequero != null)
+                textoBarequero.SetActive(false);
         }
     }
 }

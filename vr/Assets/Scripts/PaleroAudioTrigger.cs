@@ -1,23 +1,38 @@
 using UnityEngine;
 
-public class PaleroAudioTrigger : MonoBehaviour
+public class PaleroAudio : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioPalero;
+    public GameObject textoPalero;
+
+    private bool sonidoReproducido = false;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // Asegura que el texto esté oculto al iniciar
+        if (textoPalero != null)
+            textoPalero.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        // Comprueba si el objeto que entra es la barca
         if (other.CompareTag("Barca"))
         {
-            if (!audioSource.isPlaying)
+            if (!sonidoReproducido)
             {
-                audioSource.Play();
+                audioPalero.Play();
+                sonidoReproducido = true;
             }
+
+            textoPalero.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Barca"))
+        {
+            textoPalero.SetActive(false);
         }
     }
 }
