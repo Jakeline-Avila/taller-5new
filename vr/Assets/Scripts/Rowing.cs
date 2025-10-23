@@ -1,74 +1,50 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.XR; // h�pticos Quest/OpenXR
 
-public class RowingGestureBoostPlus : MonoBehaviour
+// Versión Meta/Oculus (OVR). Solo gesto; el agua es opcional.
+public class RowingGestureOVR : MonoBehaviour
 {
     [Header("Referencias")]
     public Rigidbody boatRb;
-    public Transform leftHand;        // Anchor del Left Hand Controller
-    public Transform rightHand;       // Anchor del Right Hand Controller
-    public Transform waterProvider;   // Objeto con SimpleGerstnerWater (opcional)
-    private IWaterHeightProvider water; // Debe existir un interfaz IWaterHeightProvider en tu proyecto
+    public Transform leftHand;   // Asigna LeftControllerAnchor
+    public Transform rightHand;  // Asigna RightControllerAnchor
 
-    [Header("Gesto tipo Switch (con Grip)")]
-    public bool requireGrip = true;
-    public InputActionProperty leftGrip;   // mapear a <XRController>{LeftHand}/grip
-    public InputActionProperty rightGrip;  // mapear a <XRController>{RightHand}/grip
+    [Header("Detección por gesto")]
+    public bool requireGrip = true;         // exige apretar gatillo lateral
     [Range(0f, 1f)] public float gripThreshold = 0.3f;
+    public float strokeMinBackSpeed = 1.3f; // m/s moviendo la mano hacia atrás
+    public float strokeCooldown = 0.25f;    // s entre impulsos por mano
+    public float maxSpeed = 4.0f;           // tope vel horizontal
 
-    [Header("Detecci�n de brazada")]
-    public float strokeMinBackSpeed = 1.5f; // m/s m�nimo moviendo la mano hacia atr�s
-    public float strokeCooldown = 0.28f;    // segundos entre impulsos por mano
-    public float waterBand = 0.18f;         // margen vertical para �cerca del agua�
-    public float maxSpeed = 4.0f;           // tope de velocidad horizontal del bote
-
-    [Header("�ngulo de pala (opcional)")]
-    public bool requireBladeAngle = true;
-    [Tooltip("Grados m�ximos entre hand.right y el eje lateral del bote (pala casi vertical).")]
-    public float bladeMaxAngleDeg = 35f;
+    [Header("Ángulo de pala (opcional)")]
+    public bool requireBladeAngle = false;  // desactívalo para probar
+    public float bladeMaxAngleDeg = 35f;    // hand.right ~ transform.right
 
     [Header("Impulso")]
-    public float boostImpulse = 1.25f;           // magnitud del empuj�n
-    public float yawTorque = 0.6f;               // gui�ada por asimetr�a de brazada
-    public float impulseScaleAtHighSpeed = 0.6f; // reduce impulso si ya vas r�pido
+    public float boostImpulse = 1.4f;       // fuerza por brazada
+    public float yawTorque = 0.6f;          // giro por brazo
+    public float impulseScaleAtHighSpeed = 0.6f;
+
+    [Header("Chequeo de agua (opcional)")]
+    public bool useWaterCheck = false;      // ← PONLO EN FALSE para ignorar el agua
+    public Transform waterProvider;         // opcional si usas agua
+    public float waterBand = 0.18f;
+    private IWaterHeightProvider water;
 
     [Header("Feedback")]
     public bool haptics = true;
     [Range(0f, 1f)] public float hapticAmplitude = 0.5f;
     public float hapticDuration = 0.08f;
-    public AudioSource splashSource;        // opcional
-    public AudioClip splashClip;            // opcional
-    public ParticleSystem splashLeft;       // opcional
-    public ParticleSystem splashRight;      // opcional
+    public AudioSource splashSource;   // opcional
+    public AudioClip splashClip;       // opcional
 
-    // Internos
-    private Vector3 lPrev, rPrev;
-    private Vector3 lVel, rVel;
+    // internos
     private float tL, tR;
 
     void Awake()
     {
         if (!boatRb) boatRb = GetComponent<Rigidbody>();
-        if (waterProvider) water = waterProvider.GetComponent<IWaterHeightProvider>();
-    }
-
-    void OnEnable()
-    {
-        var lg = leftGrip.action; if (lg != null) lg.Enable();
-        var rg = rightGrip.action; if (rg != null) rg.Enable();
-    }
-
-    void OnDisable()
-    {
-        var lg = leftGrip.action; if (lg != null) lg.Disable();
-        var rg = rightGrip.action; if (rg != null) rg.Disable();
-    }
-
-    void Start()
-    {
-        if (leftHand) lPrev = leftHand.position;
-        if (rightHand) rPrev = rightHand.position;
+        if (useWaterCheck && waterProvider) water = waterProvider.GetComponent<IWaterHeightProvider>();
 
         if (boatRb)
         {
@@ -82,18 +58,18 @@ public class RowingGestureBoostPlus : MonoBehaviour
         if (!boatRb) return;
         float now = Time.time;
 
-        // Velocidades de manos (mundo)
+        // Velocidades de controladores (OVR → local tracking → a mundo)
         if (leftHand)
         {
-            lVel = (leftHand.position - lPrev) / Time.fixedDeltaTime;
-            lPrev = leftHand.position;
-            TryStroke(leftHand, lVel, ref tL, now, true);
+            Vector3 lvLocal = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
+            Vector3 lvWorld = leftHand.TransformVector(lvLocal);
+            TryStroke(leftHand, lvWorld, ref tL, now, true);
         }
         if (rightHand)
         {
-            rVel = (rightHand.position - rPrev) / Time.fixedDeltaTime;
-            rPrev = rightHand.position;
-            TryStroke(rightHand, rVel, ref tR, now, false);
+            Vector3 rvLocal = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
+            Vector3 rvWorld = rightHand.TransformVector(rvLocal);
+            TryStroke(rightHand, rvWorld, ref tR, now, false);
         }
 
         // Limitar velocidad horizontal
@@ -106,37 +82,40 @@ public class RowingGestureBoostPlus : MonoBehaviour
         }
     }
 
-    void TryStroke(Transform hand, Vector3 handVel, ref float lastTime, float now, bool isLeft)
+    void TryStroke(Transform hand, Vector3 handVelWorld, ref float lastTime, float now, bool isLeft)
     {
-        // Gate por Grip
+        // Grip (gatillo lateral)
         if (requireGrip)
         {
-            var act = isLeft ? leftGrip.action : rightGrip.action;
-            if (act == null) return;
-            float g = act.ReadValue<float>();
+            float g = isLeft
+                ? OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch)
+                : OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
             if (g < gripThreshold) return;
         }
 
-        // �Cerca de la superficie del agua?
-        bool nearWater = true;
-        if (water != null)
+        // (Opcional) Agua
+        if (useWaterCheck)
         {
-            float h = water.GetHeight(hand.position, now);
-            float dy = hand.position.y - h;
-            nearWater = Mathf.Abs(dy) <= waterBand || dy < 0f;
+            bool nearWater = true;
+            if (water != null)
+            {
+                float h = water.GetHeight(hand.position, now);
+                float dy = hand.position.y - h;
+                nearWater = Mathf.Abs(dy) <= waterBand || dy < 0f;
+            }
+            else if (waterProvider != null)
+            {
+                float dy = hand.position.y - waterProvider.position.y;
+                nearWater = Mathf.Abs(dy) <= waterBand || dy < 0f;
+            }
+            if (!nearWater) return;
         }
-        else if (waterProvider != null)
-        {
-            float dy = hand.position.y - waterProvider.position.y;
-            nearWater = Mathf.Abs(dy) <= waterBand || dy < 0f;
-        }
-        if (!nearWater) return;
 
-        // Componente �hacia atr�s� respecto al forward del bote
-        float backSpeed = Vector3.Dot(handVel, -transform.forward);
+        // Mano moviéndose "hacia atrás" respecto al forward del bote
+        float backSpeed = Vector3.Dot(handVelWorld, -transform.forward);
         if (backSpeed < strokeMinBackSpeed) return;
 
-        // �ngulo de pala (mano.right ~ lateral del bote)
+        // Ángulo de pala (opcional)
         if (requireBladeAngle)
         {
             float ang = Vector3.Angle(hand.right, transform.right);
@@ -147,48 +126,25 @@ public class RowingGestureBoostPlus : MonoBehaviour
         if ((now - lastTime) < strokeCooldown) return;
         lastTime = now;
 
-        // Escala por velocidad actual
+        // Reduce impulso si ya vas rápido
         float horiz = new Vector3(boatRb.linearVelocity.x, 0f, boatRb.linearVelocity.z).magnitude;
         float speedFactor = Mathf.Lerp(1f, impulseScaleAtHighSpeed,
             Mathf.InverseLerp(0.5f * maxSpeed, maxSpeed, horiz));
 
-        // Impulso + torque
+        // Empujón + torque
         boatRb.AddForce(transform.forward * (boostImpulse * speedFactor), ForceMode.VelocityChange);
         boatRb.AddTorque(Vector3.up * (isLeft ? +yawTorque : -yawTorque) * speedFactor, ForceMode.VelocityChange);
 
-        // Feedback
-        DoHaptics(isLeft);
-        DoSplash(isLeft, hand.position);
+        // Hápticos y splash opcional
+        if (haptics) StartCoroutine(HapticPulse(isLeft));
+        if (splashSource && splashClip) { splashSource.PlayOneShot(splashClip); }
     }
 
-    void DoHaptics(bool left)
+    IEnumerator HapticPulse(bool left)
     {
-        if (!haptics) return;
-
-        var node = left ? XRNode.LeftHand : XRNode.RightHand;
-        var device = InputDevices.GetDeviceAtXRNode(node);
-        if (!device.isValid) return;
-
-        if (device.TryGetHapticCapabilities(out var caps) && caps.supportsImpulse)
-        {
-            device.SendHapticImpulse(0u, hapticAmplitude, hapticDuration);
-        }
-    }
-
-    void DoSplash(bool left, Vector3 pos)
-    {
-        // Sonido
-        if (splashSource && splashClip)
-        {
-            splashSource.transform.position = pos;
-            splashSource.PlayOneShot(splashClip);
-        }
-        // Part�culas
-        var ps = left ? splashLeft : splashRight;
-        if (ps)
-        {
-            ps.transform.position = pos;
-            ps.Play();
-        }
+        var c = left ? OVRInput.Controller.LTouch : OVRInput.Controller.RTouch;
+        OVRInput.SetControllerVibration(0.5f, hapticAmplitude, c);
+        yield return new WaitForSeconds(hapticDuration);
+        OVRInput.SetControllerVibration(0f, 0f, c);
     }
 }
