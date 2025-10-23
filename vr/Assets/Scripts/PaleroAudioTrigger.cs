@@ -2,14 +2,22 @@ using UnityEngine;
 
 public class PaleroAudio : MonoBehaviour
 {
-    public AudioSource audioPalero;
+    [Header("Zonas de detección")]
+    public Collider zonaLejana;
+    public Collider zonaCercana;
+
+    [Header("Audios")]
+    public AudioSource audioLejano;   // "¡Primo, primo, acércate!"
+    public AudioSource audioCercano;  // "Ahora sí, lo que quiere"
+
+    [Header("Texto")]
     public GameObject textoPalero;
 
-    private bool sonidoReproducido = false;
+    private bool sonidoLejanoReproducido = false;
+    private bool sonidoCercanoReproducido = false;
 
-    void Start()
+    private void Start()
     {
-        // Asegura que el texto esté oculto al iniciar
         if (textoPalero != null)
             textoPalero.SetActive(false);
     }
@@ -18,13 +26,22 @@ public class PaleroAudio : MonoBehaviour
     {
         if (other.CompareTag("Barca"))
         {
-            if (!sonidoReproducido)
+            // Si la barca entra en la zona lejana
+            if (other == zonaLejana && !sonidoLejanoReproducido)
             {
-                audioPalero.Play();
-                sonidoReproducido = true;
+                audioLejano.Play();
+                sonidoLejanoReproducido = true;
             }
 
-            textoPalero.SetActive(true);
+            // Si la barca entra en la zona cercana
+            if (other == zonaCercana && !sonidoCercanoReproducido)
+            {
+                audioCercano.Play();
+                sonidoCercanoReproducido = true;
+
+                if (textoPalero != null)
+                    textoPalero.SetActive(true);
+            }
         }
     }
 
@@ -32,7 +49,8 @@ public class PaleroAudio : MonoBehaviour
     {
         if (other.CompareTag("Barca"))
         {
-            textoPalero.SetActive(false);
+            if (other == zonaCercana && textoPalero != null)
+                textoPalero.SetActive(false);
         }
     }
 }
