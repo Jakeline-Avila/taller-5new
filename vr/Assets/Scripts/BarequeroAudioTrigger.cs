@@ -2,14 +2,22 @@ using UnityEngine;
 
 public class BarequeroAudio : MonoBehaviour
 {
-    public AudioSource audioBarequero;
+    [Header("Zonas de detección")]
+    public Collider zonaLejana;
+    public Collider zonaCercana;
+
+    [Header("Audios")]
+    public AudioSource audioLejano;   // "¡Primo, primo, acércate!"
+    public AudioSource audioCercano;  // "Ahora sí, lo que quiere"
+
+    [Header("Texto")]
     public GameObject textoBarequero;
 
-    private bool sonidoReproducido = false;
+    private bool sonidoLejanoReproducido = false;
+    private bool sonidoCercanoReproducido = false;
 
-    void Start()
+    private void Start()
     {
-        // Asegura que el texto esté oculto al iniciar
         if (textoBarequero != null)
             textoBarequero.SetActive(false);
     }
@@ -18,16 +26,22 @@ public class BarequeroAudio : MonoBehaviour
     {
         if (other.CompareTag("Barca"))
         {
-            // Reproduce el sonido solo una vez
-            if (!sonidoReproducido)
+            // Si la barca entra en la zona lejana
+            if (other == zonaLejana && !sonidoLejanoReproducido)
             {
-                audioBarequero.Play();
-                sonidoReproducido = true;
+                audioLejano.Play();
+                sonidoLejanoReproducido = true;
             }
 
-            // Muestra el texto
-            if (textoBarequero != null)
-                textoBarequero.SetActive(true);
+            // Si la barca entra en la zona cercana
+            if (other == zonaCercana && !sonidoCercanoReproducido)
+            {
+                audioCercano.Play();
+                sonidoCercanoReproducido = true;
+
+                if (textoBarequero != null)
+                    textoBarequero.SetActive(true);
+            }
         }
     }
 
@@ -35,8 +49,7 @@ public class BarequeroAudio : MonoBehaviour
     {
         if (other.CompareTag("Barca"))
         {
-            // Oculta el texto al alejarse
-            if (textoBarequero != null)
+            if (other == zonaCercana && textoBarequero != null)
                 textoBarequero.SetActive(false);
         }
     }
