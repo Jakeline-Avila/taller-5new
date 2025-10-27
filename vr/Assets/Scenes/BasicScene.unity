@@ -25477,7 +25477,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -25579,7 +25579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boatRb: {fileID: 1338381914}
-  leftHand: {fileID: 158473166}
+  leftHand: {fileID: 554136688}
   rightHand: {fileID: 832556157}
   requireGrip: 1
   gripThreshold: 0.3
@@ -25589,8 +25589,8 @@ MonoBehaviour:
   bladeMaxAngleDeg: 35
   strokeEnergy: 3.2
   glideTimeConstant: 0.9
-  yawEnergy: 0.9
-  yawTimeConstant: 0.6
+  yawEnergy: 1.2
+  yawTimeConstant: 0.8
   waterLinearDrag: 0.4
   waterQuadraticDrag: 0.25
   maxSpeed: 4
