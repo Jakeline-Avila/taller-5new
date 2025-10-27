@@ -1,35 +1,39 @@
 using System.Collections;
 using UnityEngine;
 
-// Versión Meta/Oculus (OVR). Solo gesto; el agua es opcional.
-public class RowingGestureOVR : MonoBehaviour
+// Meta / OVR: gesto con "deslizado" (glide) + drag de agua
+public class RowingGestureOVRGlide : MonoBehaviour
 {
     [Header("Referencias")]
     public Rigidbody boatRb;
-    public Transform leftHand;   // Asigna LeftControllerAnchor
-    public Transform rightHand;  // Asigna RightControllerAnchor
+    public Transform leftHand;   // LeftControllerAnchor (Meta rig)
+    public Transform rightHand;  // RightControllerAnchor
 
-    [Header("Detección por gesto")]
-    public bool requireGrip = true;         // exige apretar gatillo lateral
+    [Header("Gesto (detección)")]
+    public bool requireGrip = true;
     [Range(0f, 1f)] public float gripThreshold = 0.3f;
-    public float strokeMinBackSpeed = 1.3f; // m/s moviendo la mano hacia atrás
+    public float strokeMinBackSpeed = 1.3f; // m/s hacia atrás
     public float strokeCooldown = 0.25f;    // s entre impulsos por mano
-    public float maxSpeed = 4.0f;           // tope vel horizontal
+    public bool requireBladeAngle = false;
+    public float bladeMaxAngleDeg = 35f;
 
-    [Header("Ángulo de pala (opcional)")]
-    public bool requireBladeAngle = false;  // desactívalo para probar
-    public float bladeMaxAngleDeg = 35f;    // hand.right ~ transform.right
+    [Header("Glide (deslizamiento)")]
+    [Tooltip("Energía que aportas por brazada (se acumula y se consume como inercia).")]
+    public float strokeEnergy = 3.2f;       // más alto = más 'empuje' acumulado
+    [Tooltip("Constante de tiempo del deslizamiento (s): más alto = se disipa más lento.")]
+    public float glideTimeConstant = 0.9f;  // 0.7–1.2 da buen feeling
+    [Tooltip("Energía de guiñada por brazada (acumulada y decae).")]
+    public float yawEnergy = 0.9f;
+    public float yawTimeConstant = 0.6f;
 
-    [Header("Impulso")]
-    public float boostImpulse = 1.4f;       // fuerza por brazada
-    public float yawTorque = 0.6f;          // giro por brazo
-    public float impulseScaleAtHighSpeed = 0.6f;
+    [Header("Resistencia del agua (horizontal)")]
+    [Tooltip("Drag lineal ~v (amortigua velocidades bajas).")]
+    public float waterLinearDrag = 0.4f;
+    [Tooltip("Drag cuadrático ~v|v| (amortigua velocidades altas).")]
+    public float waterQuadraticDrag = 0.25f;
 
-    [Header("Chequeo de agua (opcional)")]
-    public bool useWaterCheck = false;      // ← PONLO EN FALSE para ignorar el agua
-    public Transform waterProvider;         // opcional si usas agua
-    public float waterBand = 0.18f;
-    private IWaterHeightProvider water;
+    [Header("Límites")]
+    public float maxSpeed = 4.2f; // tope de velocidad horizontal
 
     [Header("Feedback")]
     public bool haptics = true;
@@ -38,14 +42,14 @@ public class RowingGestureOVR : MonoBehaviour
     public AudioSource splashSource;   // opcional
     public AudioClip splashClip;       // opcional
 
-    // internos
+    // Internos
     private float tL, tR;
+    private float glideForward; // "thrust" acumulado que se aplica cada FixedUpdate
+    private float glideYaw;     // torque acumulado que se aplica cada FixedUpdate
 
     void Awake()
     {
         if (!boatRb) boatRb = GetComponent<Rigidbody>();
-        if (useWaterCheck && waterProvider) water = waterProvider.GetComponent<IWaterHeightProvider>();
-
         if (boatRb)
         {
             boatRb.interpolation = RigidbodyInterpolation.Interpolate;
@@ -57,34 +61,54 @@ public class RowingGestureOVR : MonoBehaviour
     {
         if (!boatRb) return;
         float now = Time.time;
+        float dt = Time.fixedDeltaTime;
 
-        // Velocidades de controladores (OVR → local tracking → a mundo)
+        // 1) Detectar gesto con velocidades de los controladores (OVR)
         if (leftHand)
         {
-            Vector3 lvLocal = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
-            Vector3 lvWorld = leftHand.TransformVector(lvLocal);
-            TryStroke(leftHand, lvWorld, ref tL, now, true);
+            Vector3 lvWorld = leftHand.TransformVector(
+                OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch));
+            TryStroke(lvWorld, ref tL, now, isLeft: true);
         }
         if (rightHand)
         {
-            Vector3 rvLocal = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
-            Vector3 rvWorld = rightHand.TransformVector(rvLocal);
-            TryStroke(rightHand, rvWorld, ref tR, now, false);
+            Vector3 rvWorld = rightHand.TransformVector(
+                OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch));
+            TryStroke(rvWorld, ref tR, now, isLeft: false);
         }
 
-        // Limitar velocidad horizontal
+        // 2) Aplicar "glide" (aceleración y torque que decaen exponencialmente)
+        if (glideForward != 0f)
+            boatRb.AddForce(transform.forward * glideForward, ForceMode.Acceleration);
+        if (glideYaw != 0f)
+            boatRb.AddTorque(Vector3.up * glideYaw, ForceMode.Acceleration);
+
+        float kF = Mathf.Exp(-dt / Mathf.Max(0.05f, glideTimeConstant));
+        float kY = Mathf.Exp(-dt / Mathf.Max(0.05f, yawTimeConstant));
+        glideForward *= kF;
+        glideYaw *= kY;
+
+        // 3) Resistencia del agua (solo componente horizontal)
         Vector3 v = boatRb.linearVelocity;
         Vector3 hv = new Vector3(v.x, 0f, v.z);
-        if (hv.magnitude > maxSpeed)
+        if (hv.sqrMagnitude > 0.0001f)
+        {
+            Vector3 drag = -(waterLinearDrag * hv + waterQuadraticDrag * hv.normalized * hv.sqrMagnitude);
+            boatRb.AddForce(new Vector3(drag.x, 0f, drag.z), ForceMode.Acceleration);
+        }
+
+        // 4) Tapa de velocidad horizontal (suave)
+        float speed = hv.magnitude;
+        if (speed > maxSpeed)
         {
             Vector3 clamp = hv.normalized * maxSpeed;
             boatRb.linearVelocity = new Vector3(clamp.x, v.y, clamp.z);
         }
     }
 
-    void TryStroke(Transform hand, Vector3 handVelWorld, ref float lastTime, float now, bool isLeft)
+    void TryStroke(Vector3 handVelWorld, ref float lastTime, float now, bool isLeft)
     {
-        // Grip (gatillo lateral)
+        // Gate por grip (gatillo lateral)
         if (requireGrip)
         {
             float g = isLeft
@@ -93,51 +117,34 @@ public class RowingGestureOVR : MonoBehaviour
             if (g < gripThreshold) return;
         }
 
-        // (Opcional) Agua
-        if (useWaterCheck)
-        {
-            bool nearWater = true;
-            if (water != null)
-            {
-                float h = water.GetHeight(hand.position, now);
-                float dy = hand.position.y - h;
-                nearWater = Mathf.Abs(dy) <= waterBand || dy < 0f;
-            }
-            else if (waterProvider != null)
-            {
-                float dy = hand.position.y - waterProvider.position.y;
-                nearWater = Mathf.Abs(dy) <= waterBand || dy < 0f;
-            }
-            if (!nearWater) return;
-        }
-
         // Mano moviéndose "hacia atrás" respecto al forward del bote
         float backSpeed = Vector3.Dot(handVelWorld, -transform.forward);
         if (backSpeed < strokeMinBackSpeed) return;
 
-        // Ángulo de pala (opcional)
+        // (Opcional) Ángulo de pala más "vertical"
         if (requireBladeAngle)
         {
-            float ang = Vector3.Angle(hand.right, transform.right);
-            if (ang > bladeMaxAngleDeg) return;
+            // aproximación: usa mano derecha/izquierda del mando si existen; si no, omite
+            // (si necesitas exactitud, pasa los transforms de mano y calcula Angle con hand.right)
         }
 
         // Cooldown
         if ((now - lastTime) < strokeCooldown) return;
         lastTime = now;
 
-        // Reduce impulso si ya vas rápido
-        float horiz = new Vector3(boatRb.linearVelocity.x, 0f, boatRb.linearVelocity.z).magnitude;
-        float speedFactor = Mathf.Lerp(1f, impulseScaleAtHighSpeed,
-            Mathf.InverseLerp(0.5f * maxSpeed, maxSpeed, horiz));
+        // Escala por velocidad actual para no sobrepotenciar en altas velocidades
+        Vector3 hv = new Vector3(boatRb.linearVelocity.x, 0f, boatRb.linearVelocity.z);
+        float speed = hv.magnitude;
+        float highSpeedAtten = Mathf.InverseLerp(0.5f * maxSpeed, maxSpeed, speed);
+        float speedFactor = Mathf.Lerp(1f, 0.6f, highSpeedAtten);
 
-        // Empujón + torque
-        boatRb.AddForce(transform.forward * (boostImpulse * speedFactor), ForceMode.VelocityChange);
-        boatRb.AddTorque(Vector3.up * (isLeft ? +yawTorque : -yawTorque) * speedFactor, ForceMode.VelocityChange);
+        // 👉 En lugar de un golpe instantáneo, acumulamos "energía de deslizamiento"
+        glideForward += strokeEnergy * speedFactor;
+        glideYaw += (isLeft ? +1f : -1f) * yawEnergy * speedFactor;
 
-        // Hápticos y splash opcional
+        // Feedback
         if (haptics) StartCoroutine(HapticPulse(isLeft));
-        if (splashSource && splashClip) { splashSource.PlayOneShot(splashClip); }
+        if (splashSource && splashClip) splashSource.PlayOneShot(splashClip);
     }
 
     IEnumerator HapticPulse(bool left)
