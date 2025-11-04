@@ -26,8 +26,10 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ENABLENORMAL
+  - _ENABLEPLANERREFLECTION
   - _ENABLEREFRACTION
   - _ENABLEWAVE
+  - _ENABLE_UNDERWATERLAYER
   m_InvalidKeywords:
   - _ENABLEUNDERWATERLAYER
   - _SURFACE_TYPE_TRANSPARENT
@@ -97,14 +99,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _1st_Wave_Height: 0.02
+    - _1st_Wave_Height: 0.023
     - _1st_Wave_Length: 11
     - _1st_Wave_Sharpness: 0.1
-    - _1st_Wave_Speed: 1
+    - _1st_Wave_Speed: 3
     - _2nd_Wave_Height: 0.015
     - _2nd_Wave_Length: 5
     - _2nd_Wave_Sharpness: 0.2
-    - _2nd_Wave_Speed: 0.35
+    - _2nd_Wave_Speed: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -125,26 +127,26 @@ Material:
     - _ENABLECAUSTICS: 0
     - _ENABLEINTERSECTION: 0
     - _ENABLENORMAL: 1
-    - _ENABLEPLANERREFLECTION: 0
+    - _ENABLEPLANERREFLECTION: 1
     - _ENABLEREFRACTION: 1
     - _ENABLESHORELINE: 0
     - _ENABLESURFACEFOAM: 0
     - _ENABLEWAVE: 1
-    - _ENABLE_UNDERWATERLAYER: 0
+    - _ENABLE_UNDERWATERLAYER: 1
     - _Enable_Intersection: 1
-    - _Enable_SurfaceFoam: 0
+    - _Enable_SurfaceFoam: 1
     - _InterSec_Dissolve: 1
     - _InterSec_Edge_Dissolve: 1
-    - _InterSec_Edge_Fade: 0
+    - _InterSec_Edge_Fade: 0.54
     - _InterSec_Foam_Distortion: 0.1
     - _InterSec_Foam_Invert: 1
     - _InterSec_Foam_Scale: 7.15
     - _InterSec_Foam_Smooth: 0
-    - _InterSec_GradientDissolve: 1
+    - _InterSec_GradientDissolve: 0
     - _InterSec_Width: 0.69
     - _Invert_SurfFoam: 0
     - _Normal_DistanceStrength: 0.72
-    - _Normal_Pan: 0.83
+    - _Normal_Pan: 12
     - _Normal_Scale: 5
     - _Normal_Strength: 1
     - _Normal_Tile: 5
@@ -157,12 +159,12 @@ Material:
     - _Refraction_Distance_Strength: 0.3
     - _Refraction_Strength: 2
     - _SL_Ammount: 3.46
-    - _SL_CenterMask: 0.42
+    - _SL_CenterMask: 0.603
     - _SL_CenterMaskFade: 0.13
     - _SL_Depth: 0.3
     - _SL_Dissolve: 0.7
     - _SL_EnableDirection: 0
-    - _SL_EnableTrail: 0
+    - _SL_EnableTrail: 1
     - _SL_ExplandNearShore: -1
     - _SL_FilpDirection: 0
     - _SL_GradientDissolve: -0.57
@@ -175,8 +177,8 @@ Material:
     - _SL_Trail_Flip: 0
     - _SL_WaterDepth: 0.3
     - _SL_WaveDirection: 1
-    - _ShoreFade: 0
-    - _ShoreFade_Smoothness: 0
+    - _ShoreFade: 1
+    - _ShoreFade_Smoothness: 1
     - _Specular_Hardness: 1
     - _Specular_Size: 0.733
     - _Specular_Spread: 0
@@ -188,12 +190,12 @@ Material:
     - _SurfFoam_Scale: 3
     - _Surface: 1
     - _SurfaceDistortion_Scale: 1
-    - _SurfaceDistortion_Strength: 0.11
+    - _SurfaceDistortion_Strength: 1
     - _UnderWater_Depth: -4
     - _UnderWater_ScaleModifier: 0
     - _UnderWater_Start: 5
     - _Underwater_Fade: 15
-    - _Water_Depth: 0.3
+    - _Water_Depth: 0.1
     - _WorldSpaceDepth: 1
     - _ZTest: 4
     - _ZWrite: 0
@@ -202,7 +204,7 @@ Material:
     - _1st_Wave_Direction: {r: 1, g: 0, b: 1, a: 0}
     - _2nd_Wave_Direction: {r: 0, g: 0, b: 1, a: 0}
     - _Color_Deep: {r: 0.4339623, g: 0.18081762, b: 0.10849057, a: 1}
-    - _Color_Shallow: {r: 0.4245283, g: 0.15035379, b: 0, a: 0.35686275}
+    - _Color_Shallow: {r: 0.3577786, g: 0.12588507, b: 0, a: 0.62352943}
     - _InterSec_Color: {r: 1, g: 1, b: 1, a: 1}
     - _InterSec_Foam_Pan: {r: 0, g: 0.52, b: 0, a: 0}
     - _InterSec_Foam_Tile: {r: 1, g: 1, b: 0, a: 0}
@@ -211,12 +213,12 @@ Material:
     - _SL_MaskTile: {r: 1, g: 1, b: 0, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     - _Specular_Color: {r: 0.0007314641, g: 0.0007314641, b: 0.0007314641, a: 1}
-    - _SurfFoam_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _SurfFoam_Color: {r: 0, g: 0, b: 0, a: 0}
     - _SurfFoam_Pan: {r: 0, g: 0, b: 0, a: 0}
     - _SurfFoam_Tile: {r: 1, g: 1, b: 0, a: 0}
     - _SurfaceDistortion_Pan: {r: 2, g: 2, b: 0, a: 0}
     - _SurfaceDistortion_Speed: {r: 1, g: 1, b: 0, a: 0}
     - _Underwater_Color: {r: 0, g: 0, b: 0, a: 0.3647059}
-    - _Wave_Top_Color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 0.5372549}
+    - _Wave_Top_Color: {r: 0.7935208, g: 0.32557237, b: 0.32557237, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

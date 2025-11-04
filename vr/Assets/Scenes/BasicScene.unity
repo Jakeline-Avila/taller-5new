@@ -8075,7 +8075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7321244733921829899, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7985332832353156785, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_LocalScale.x
@@ -8083,7 +8083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985332832353156785, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 80
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 7985332832353156785, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_LocalScale.z
@@ -8130,12 +8130,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9122803262510302686, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122803262510302686, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_MotionVectors
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9122803262510302686, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_LightProbeUsage
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9122803262510302686, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_RenderingLayerMask
@@ -8177,9 +8181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee942877392b76a4881f25213bb69f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetY: 0
-  swellAmplitude: 0.15
-  swellSpeed: 0.6
+  offsetY: 1
+  swellAmplitude: 1
+  swellSpeed: 1
 --- !u!114 &362494821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8192,7 +8196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f4ec05913abb244867884247b54aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.1
+  amplitude: 1
   wavelength: 1
   speed: 1.1
   dir1: {x: 1, y: 0}
@@ -20438,7 +20442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062832743886062038, guid: 5b003cc6e57bf8441acf22254742cf41, type: 3}
       propertyPath: reflectSkybox
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2062832743886062038, guid: 5b003cc6e57bf8441acf22254742cf41, type: 3}
       propertyPath: reflectionTarget
@@ -26336,7 +26340,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7321244733921829899, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_Name
-      value: Water Template Clear (1)
+      value: PisoFondo
       objectReference: {fileID: 0}
     - target: {fileID: 7321244733921829899, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_IsActive
@@ -26360,7 +26364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985332832353156785, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.65
+      value: -3.48
       objectReference: {fileID: 0}
     - target: {fileID: 7985332832353156785, guid: ea6879d7ef1254d4dae9cf5b7d2b12bc, type: 3}
       propertyPath: m_LocalPosition.z
