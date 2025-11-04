@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Villegas\\taller-5new\\vr\\",
+  "WorkspaceRootPath": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|d:\\villegas\\taller-5new\\vr\\assets\\scripts\\rowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|c:\\users\\usuario\\desktop\\vr\\taller-5new\\vr\\assets\\scripts\\paleroaudiotrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\paleroaudiotrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|c:\\users\\usuario\\desktop\\vr\\taller-5new\\vr\\assets\\scripts\\rowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\rowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -14,19 +18,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PaleroAudioTrigger.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\PaleroAudioTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PaleroAudioTrigger.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\PaleroAudioTrigger.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PaleroAudioTrigger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T03:04:09.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Rowing.cs",
-              "DocumentMoniker": "D:\\Villegas\\taller-5new\\vr\\Assets\\Scripts\\Rowing.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\Rowing.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Rowing.cs",
-              "ToolTip": "D:\\Villegas\\taller-5new\\vr\\Assets\\Scripts\\Rowing.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\Rowing.cs",
               "RelativeToolTip": "Assets\\Scripts\\Rowing.cs",
               "ViewState": "AgIAAIcAAAAAAAAAAAAwwKgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
