@@ -21,7 +21,7 @@ public class CanoaController : MonoBehaviour
     private void VoltearCanoa()
     {
         // Rotación instantánea
-        transform.Rotate(0, 80, 180f);
+        transform.Rotate(0, 0, 180f);
 
         // O puedes usar física:
         // rb.AddTorque(transform.right * 500f, ForceMode.Impulse);
