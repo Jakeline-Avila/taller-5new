@@ -144,7 +144,7 @@ Material:
     - _InterSec_Foam_Smooth: 0
     - _InterSec_GradientDissolve: 0
     - _InterSec_Width: 0.69
-    - _Invert_SurfFoam: 0
+    - _Invert_SurfFoam: 1
     - _Normal_DistanceStrength: 0.72
     - _Normal_Pan: 12
     - _Normal_Scale: 5
@@ -196,7 +196,7 @@ Material:
     - _UnderWater_Start: 5
     - _Underwater_Fade: 15
     - _Water_Depth: 0.1
-    - _WorldSpaceDepth: 1
+    - _WorldSpaceDepth: 0
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
@@ -204,7 +204,7 @@ Material:
     - _1st_Wave_Direction: {r: 1, g: 0, b: 1, a: 0}
     - _2nd_Wave_Direction: {r: 0, g: 0, b: 1, a: 0}
     - _Color_Deep: {r: 0.38341045, g: 0.13707654, b: 0.068861, a: 1}
-    - _Color_Shallow: {r: 0.3577786, g: 0.12588507, b: 0, a: 0.62352943}
+    - _Color_Shallow: {r: 0.3577786, g: 0.12588507, b: 0, a: 0.90588236}
     - _InterSec_Color: {r: 1, g: 1, b: 1, a: 1}
     - _InterSec_Foam_Pan: {r: 0, g: 0.52, b: 0, a: 0}
     - _InterSec_Foam_Tile: {r: 1, g: 1, b: 0, a: 0}
