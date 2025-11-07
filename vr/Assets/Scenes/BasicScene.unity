@@ -546,10 +546,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbd2ebcd87b2fa45bed81ad048ae648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zonaLejana: {fileID: 491836727}
-  zonaCercana: {fileID: 1373414469}
-  audioLejano: {fileID: 34860319}
-  audioCercano: {fileID: 34860320}
+  audioSource: {fileID: 0}
+  boatTag: Barca
+  playOnce: 1
 --- !u!82 &34860319
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4248,7 +4247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028a1e29e848e245bd23b20171f7c6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.22
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028a1e29e848e245bd23b20171f7c6f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4256,7 +4255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028a1e29e848e245bd23b20171f7c6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.17
+      value: -5.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028a1e29e848e245bd23b20171f7c6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4764,31 +4763,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.061639197
+      value: 0.026589956
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.061617687
+      value: -0.026579786
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70453894
+      value: 0.7067308
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.704293
+      value: 0.70648307
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 190
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -4.3110046
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_Name
@@ -8560,10 +8559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbd2ebcd87b2fa45bed81ad048ae648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zonaLejana: {fileID: 491836727}
-  zonaCercana: {fileID: 1373414469}
-  audioLejano: {fileID: 469117920}
-  audioCercano: {fileID: 469117916}
+  audioSource: {fileID: 0}
+  boatTag: Barca
+  playOnce: 1
 --- !u!82 &469117916
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25698,14 +25696,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318925376}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021818272, y: 0.058525357, z: -0.00000000127912, w: 0.99828595}
-  m_LocalPosition: {x: 0.11, y: 2.64, z: -0.17}
+  m_LocalRotation: {x: -0.000000021855707, y: -0.0017413793, z: 3.804512e-11, w: 0.99999857}
+  m_LocalPosition: {x: -0.291, y: 2.64, z: -0.204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1620413810}
   m_Father: {fileID: 1338381903}
-  m_LocalEulerAnglesHint: {x: 0, y: 6.71, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.2, z: 0}
 --- !u!1 &1323501058
 GameObject:
   m_ObjectHideFlags: 0
@@ -26892,6 +26890,7 @@ GameObject:
   - component: {fileID: 1373414471}
   - component: {fileID: 1373414469}
   - component: {fileID: 1373414470}
+  - component: {fileID: 1373414472}
   m_Layer: 0
   m_Name: ZonaCercana
   m_TagString: Barca
@@ -27032,6 +27031,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 34860317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373414472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373414468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbd2ebcd87b2fa45bed81ad048ae648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1373414470}
+  boatTag: Barca
+  playOnce: 1
 --- !u!1001 &1376521008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31761,7 +31775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100.8
+      value: -60.58
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalPosition.y
@@ -31773,19 +31787,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.72207457
+      value: 0.67680776
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000015781472
+      value: 0.000000014792131
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.6918152
+      value: 0.73615986
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000015120124
+      value: -0.00000001608931
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -31793,7 +31807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 87.548
+      value: 94.811
       objectReference: {fileID: 0}
     - target: {fileID: 4862178472220348, guid: a89eef680e28b83449e3a6ba46792fbe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

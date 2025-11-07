@@ -1,36 +1,28 @@
 using UnityEngine;
 
-public class PaleroAudio : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public class PlayAudioOnBoatTrigger : MonoBehaviour
 {
-    [Header("Zonas de detección")]
-    public Collider zonaLejana;
-    public Collider zonaCercana;
+    public AudioSource audioSource;
+    public string boatTag = "Barca";
+    public bool playOnce = true;
 
-    [Header("Audios")]
-    public AudioSource audioLejano;   // "¡Primo, primo, acércate!"
-    public AudioSource audioCercano;  // "Ahora sí, lo que quiere"
+    bool played;
 
-    private bool sonidoLejanoReproducido = false;
-    private bool sonidoCercanoReproducido = false;
-
-    private void OnTriggerEnter(Collider other)
+    void Reset()
     {
-        // Solo responde si el objeto tiene el tag "Barca" y un Rigidbody
-        if (other.CompareTag("Barca") && other.attachedRigidbody != null)
-        {
-            // Si entra a la zona lejana
-            if (other == zonaLejana && !sonidoLejanoReproducido)
-            {
-                audioLejano.Play();
-                sonidoLejanoReproducido = true;
-            }
+        var col = GetComponent<Collider>();
+        col.isTrigger = true;
+    }
 
-            // Si entra a la zona cercana
-            if (other == zonaCercana && !sonidoCercanoReproducido)
-            {
-                audioCercano.Play();
-                sonidoCercanoReproducido = true;
-            }
-        }
+    void OnTriggerEnter(Collider other)
+    {
+        if (playOnce && played) return;
+        // Asegura que el que entra sea la barca y tenga Rigidbody
+        if (!other.attachedRigidbody) return;
+        if (!other.CompareTag(boatTag)) return;
+
+        audioSource?.Play();
+        played = true;
     }
 }
