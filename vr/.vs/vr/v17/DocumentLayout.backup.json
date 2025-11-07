@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\assets\\scripts\\canoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Runtime\\UniversalRenderPipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Runtime\\UniversalRenderPipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|c:\\users\\usuario\\desktop\\vr\\taller-5new\\vr\\assets\\scripts\\canoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\canoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,7 +19,7 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.xr.core-utils@5b282bc7378d\\Runtime\\XROrigin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|c:\\users\\usuario\\desktop\\vr\\taller-5new\\vr\\assets\\scripts\\rowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\assets\\scripts\\rowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2723F00E-D669-6D54-74E3-59E92CCD286E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\rowing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -70,11 +74,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "UniversalRenderPipeline.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Runtime\\UniversalRenderPipeline.cs",
+              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Runtime\\UniversalRenderPipeline.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Runtime\\UniversalRenderPipeline.cs",
+              "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Runtime\\UniversalRenderPipeline.cs",
+              "ViewState": "AgIAALoCAAAAAAAAAAAqwMECAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T05:03:55.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "XROrigin.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Library\\PackageCache\\com.unity.xr.core-utils@5b282bc7378d\\Runtime\\XROrigin.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.xr.core-utils@5b282bc7378d\\Runtime\\XROrigin.cs",
@@ -82,12 +99,11 @@
               "RelativeToolTip": "Library\\PackageCache\\com.unity.xr.core-utils@5b282bc7378d\\Runtime\\XROrigin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T22:52:36.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-06T22:52:36.214Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CanoaController.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\CanoaController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\CanoaController.cs",
@@ -100,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Lit.shader",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Shaders\\Lit.shader",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@ec146228694a\\Shaders\\Lit.shader",
@@ -112,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "SimpleGerstnerWater.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\SimpleGerstnerWater.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SimpleGerstnerWater.cs",
@@ -124,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Levelreset.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\Levelreset.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Levelreset.cs",
@@ -132,12 +148,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Levelreset.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T20:32:23.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-04T20:32:23.661Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Iwater.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\Iwater.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Iwater.cs",
@@ -149,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "FishermanVoice.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\FishermanVoice.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\FishermanVoice.cs",
@@ -161,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "ConstantWaterLevel.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\ConstantWaterLevel.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ConstantWaterLevel.cs",
@@ -173,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "PaleroAudioTrigger.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\PaleroAudioTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PaleroAudioTrigger.cs",
@@ -185,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Rowing.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\Rowing.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Rowing.cs",
@@ -193,12 +208,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Rowing.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAKgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T18:42:40.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-27T18:42:40.25Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "BuoyancyPD.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\BuoyancyPD.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BuoyancyPD.cs",
@@ -210,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "BoatmotorVr.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\BoatmotorVr.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BoatmotorVr.cs",
@@ -222,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Boatbuoyanci.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\Boatbuoyanci.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Boatbuoyanci.cs",
@@ -234,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "BoatMountZone.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\BoatMountZone.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BoatMountZone.cs",
@@ -246,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "BarequeroAudioTrigger.cs",
               "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Vr\\taller-5new\\vr\\Assets\\Scripts\\BarequeroAudioTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BarequeroAudioTrigger.cs",

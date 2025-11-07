@@ -550,7 +550,6 @@ MonoBehaviour:
   zonaCercana: {fileID: 1373414469}
   audioLejano: {fileID: 34860319}
   audioCercano: {fileID: 34860320}
-  textoPalero: {fileID: 0}
 --- !u!82 &34860319
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8565,7 +8564,6 @@ MonoBehaviour:
   zonaCercana: {fileID: 1373414469}
   audioLejano: {fileID: 469117920}
   audioCercano: {fileID: 469117916}
-  textoPalero: {fileID: 612305996}
 --- !u!82 &469117916
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9351,8 +9349,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.662296, y: 3.936058, z: 10.831772}
-  m_Center: {x: -1.218071, y: 0.50583243, z: 2.3017273}
+  m_Size: {x: 22.48711, y: 3.936058, z: 10.831772}
+  m_Center: {x: -7.630478, y: 0.50583243, z: 2.3017273}
 --- !u!82 &491836728
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26920,8 +26918,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.914211, y: 4.613249, z: 17.013584}
-  m_Center: {x: -2.3440285, y: 0.8444278, z: 3.1525517}
+  m_Size: {x: 29.31968, y: 4.613249, z: 17.013584}
+  m_Center: {x: -11.046762, y: 0.8444278, z: 3.1525517}
 --- !u!82 &1373414470
 AudioSource:
   m_ObjectHideFlags: 0
