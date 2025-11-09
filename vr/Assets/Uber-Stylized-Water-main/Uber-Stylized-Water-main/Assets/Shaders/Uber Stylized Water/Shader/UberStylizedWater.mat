@@ -154,7 +154,7 @@ Material:
     - _QueueOffset: 0
     - _Reflection_Distortion: 1
     - _Reflection_Fresnel: 4.1
-    - _Reflection_Strength: 1
+    - _Reflection_Strength: 0.43
     - _Refraction_Distance_Fade: 0.5
     - _Refraction_Distance_Strength: 0.3
     - _Refraction_Strength: 2

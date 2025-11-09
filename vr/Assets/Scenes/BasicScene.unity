@@ -9935,9 +9935,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: f958a995987470349911bf17f8eb16eb, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Resource: {fileID: 8300000, guid: d4f6b9a90da849547b9c6565281be211, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -26911,7 +26911,7 @@ MonoBehaviour:
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
   requestEyeTrackingPermissionOnStartup: 0
-  requestScenePermissionOnStartup: 0
+  requestScenePermissionOnStartup: 1
   requestRecordAudioPermissionOnStartup: 0
   _localDimming: 1
   _trackingOriginType: 1
@@ -27666,7 +27666,7 @@ MonoBehaviour:
   minPullDistance: 0.1
   minLateralOffset: 0.1
   minBackSpeed: 1.2
-  strokeEnergy: 20
+  strokeEnergy: 40
   glideTimeConstant: 0.9
   yawEnergy: 1.2
   yawTimeConstant: 0.8
@@ -28191,8 +28191,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15.2992935, y: 4.613249, z: 38.99231}
-  m_Center: {x: -1.5108452, y: 0.8444278, z: 13.234718}
+  m_Size: {x: 7.8025894, y: 4.613249, z: 38.99231}
+  m_Center: {x: 2.2375069, y: 0.8444278, z: 13.234718}
 --- !u!82 &1373414470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28299,7 +28299,7 @@ Transform:
   m_GameObject: {fileID: 1373414468}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -96.88989, y: 2.34, z: -73.115524}
+  m_LocalPosition: {x: -87.19, y: 2.34, z: -73.115524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
