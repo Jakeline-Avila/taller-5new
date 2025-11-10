@@ -4812,6 +4812,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.3110046
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01920ce0e4f92f446a58d51ce468f8fc, type: 3}
       propertyPath: m_Name
       value: Barca (3)
@@ -5873,8 +5877,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.213434, y: 8.040591, z: 20.555206}
-  m_Center: {x: 0.96548176, y: -0.86924314, z: 2.684883}
+  m_Size: {x: 6.70006, y: 8.040591, z: 20.555206}
+  m_Center: {x: 1.6910315, y: -0.86924314, z: 2.684883}
 --- !u!4 &295243722
 Transform:
   m_ObjectHideFlags: 0
@@ -8100,8 +8104,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.213434, y: 8.040591, z: 20.555206}
-  m_Center: {x: 0.96548176, y: -0.86924314, z: 2.684883}
+  m_Size: {x: 6.177593, y: 8.040591, z: 20.555206}
+  m_Center: {x: 1.2592354, y: -0.86924314, z: 2.684883}
 --- !u!4 &393807077
 Transform:
   m_ObjectHideFlags: 0
@@ -9234,8 +9238,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.463474, y: 8.040591, z: 71.561035}
-  m_Center: {x: 2.110094, y: -0.86924314, z: 19.422035}
+  m_Size: {x: 8.895458, y: 8.040591, z: 80.38484}
+  m_Center: {x: -7.5462017, y: -0.86924314, z: 15.010132}
 --- !u!4 &463311963
 Transform:
   m_ObjectHideFlags: 0
@@ -9937,7 +9941,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d4f6b9a90da849547b9c6565281be211, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10202,8 +10206,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.137987, y: 8.040591, z: 40.323593}
-  m_Center: {x: -0.6260824, y: -0.86924314, z: 12.569077}
+  m_Size: {x: 5.678625, y: 8.040591, z: 40.323593}
+  m_Center: {x: -3.2551012, y: -0.86924314, z: 12.569077}
 --- !u!4 &491868708
 Transform:
   m_ObjectHideFlags: 0
@@ -13685,8 +13689,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.213434, y: 8.040591, z: 20.555206}
-  m_Center: {x: 0.96548176, y: -0.86924314, z: 2.684883}
+  m_Size: {x: 6.835888, y: 8.040591, z: 15.973076}
+  m_Center: {x: 0.17917061, y: -0.86924314, z: 4.9759483}
 --- !u!4 &690938740
 Transform:
   m_ObjectHideFlags: 0
@@ -19240,8 +19244,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 15.2992935, y: 4.613249, z: 40.323593}
-  m_Center: {x: -1.5108452, y: 0.8444278, z: 12.569077}
+  m_Size: {x: 7.021694, y: 4.613249, z: 40.323593}
+  m_Center: {x: -5.649645, y: 0.8444278, z: 12.569077}
 --- !u!4 &971415943
 Transform:
   m_ObjectHideFlags: 0
@@ -28191,8 +28195,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.8025894, y: 4.613249, z: 38.99231}
-  m_Center: {x: 2.2375069, y: 0.8444278, z: 13.234718}
+  m_Size: {x: 7.8025894, y: 4.613249, z: 43.72676}
+  m_Center: {x: 2.2375069, y: 0.8444278, z: 10.867493}
 --- !u!82 &1373414470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33918,8 +33922,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.137987, y: 8.040591, z: 40.323593}
-  m_Center: {x: -0.6260824, y: -0.86924314, z: 12.569077}
+  m_Size: {x: 6.952922, y: 8.040591, z: 40.323593}
+  m_Center: {x: -2.218615, y: -0.86924314, z: 12.569077}
 --- !u!4 &1638653464
 Transform:
   m_ObjectHideFlags: 0
